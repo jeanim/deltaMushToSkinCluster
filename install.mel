@@ -1,0 +1,46 @@
+/*
+# Author: Godfrey Huang
+# Email: godfreyhuang@cgenter.com
+# Website: www.cgenter.com
+#
+# Created by Godfrey Huang on 2015-11-01.
+# Copyright (c) 2014 CGENTER.COM. All rights reserved.
+*/
+global proc tempProc ()
+{}
+
+global proc string tellMeWhere()
+{
+	string $place=`whatIs tempProc`;
+	string $buffer[];
+ 	$numTokens = `tokenize $place ":" $buffer`;
+	$place=strip ($buffer[1]+":"+$buffer[2]);
+	string $buffer1[];
+ 	$numTokens = `tokenize $place "/" $buffer1`;
+	$place=$buffer1[0];
+	string $os = `about -operatingSystem`;
+	for ($i=1;$i<($numTokens-1);$i++)
+	{
+		if($os=="mac")
+			{$place="/"+$place+"/"+$buffer1[$i];}
+		else
+			{$place=$place+"/"+$buffer1[$i];}
+	}
+	if(`gmatch $place "*invoke*"`)
+		{$place=`substring $place 1 (size($place)-7)` ;}
+	else
+		{$place=($place+"/scripts");}
+	return	$place;
+}
+
+global proc installAssetEngine()
+{
+    string $scriptsPath = `tellMeWhere`;
+    string $pyStr = "import sys\n";
+    $pyStr += "sys.path.append(\""+$scriptsPath+"\")\n";
+    $pyStr += "import dm2scSetup\n";
+    $pyStr += "reload(dm2scSetup)\n";
+    $pyStr += "dm2scSetup.main()\n";
+    python($pyStr);
+}
+installAssetEngine();
