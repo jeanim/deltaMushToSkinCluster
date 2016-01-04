@@ -19,7 +19,7 @@ Maya 2014 x64+, Windows, and OS X
 * 拷贝module/deltaMushToSkinCluster.mod文件到maya的设置文件夹路径（如：C:\Users\你的用户名\Documents\maya）下的module文件夹下（如没有module文件夹则新建）
 
 * 编辑deltaMushToSkinCluster.mod文件，替换"REPLACE_YOUR_PATH"为本插件的安装目录（如：E:\dev）,编辑后mod文件像下面一样
-> deltaMushToSkinCluster 1.0 E:/dev/deltamushtoskincluster
+> +deltaMushToSkinCluster 1.0 E:/dev/deltamushtoskincluster
 
 ##使用
 * 选择带deltaMush变形器的polygon物体后，执行shelf按钮或以下python代码进行自动转换
