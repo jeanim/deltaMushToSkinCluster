@@ -50,20 +50,24 @@ def createModFile():
     f.close()
 
 def enableaPlugin(filename):
+    extDict = {'win64':'mll','mac':'bundle','linux':'so','linux64':'so'}
+    os = cmds.about(os=True)
+    ext = extDict[os]
     version = cmds.about(v=True)[:4]
     pluginName = 'deltaMushToSkinCluster_%s' % version
+    fileFullName = '%s.%s' % (pluginName,ext)
     rootPath = getParentPath(currentFileDirectory())
     pluginsPath = rootPath+'/plug-ins/'
-    pluginFilePath = pluginsPath+'%s.mll' % pluginName
+    pluginFilePath = pluginsPath+fileFullName
     pluginStr = mel.eval('getenv "MAYA_PLUG_IN_PATH";')+';'+pluginsPath
     mel.eval('putenv "MAYA_PLUG_IN_PATH" "%s";' % pluginStr)
     with open(filename,'a+') as f:
         state = True
         for line in f.readlines():
-            if re.findall("%s.mll" % pluginName,line):
+            if re.findall(fileFullName,line):
                 state = False
         if state:
-            f.write(r'evalDeferred("autoLoadPlugin(\"\", \"%s.mll\", \"%s\")");' % (pluginName,pluginName))
+            f.write(r'evalDeferred("autoLoadPlugin(\"\", \"%s\", \"%s\")");' % (fileFullName,pluginName))
 
     if not cmds.pluginInfo( pluginFilePath, query=True, autoload=True):
         cmds.pluginInfo( pluginFilePath, edit=True, autoload=True)
