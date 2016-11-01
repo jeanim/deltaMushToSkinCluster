@@ -33,7 +33,7 @@ global proc string tellMeWhere()
 	return	$place;
 }
 
-global proc installAssetEngine()
+global proc install()
 {
     string $scriptsPath = `tellMeWhere`;
     string $pyStr = "import sys\n";
@@ -43,4 +43,4 @@ global proc installAssetEngine()
     $pyStr += "dm2scSetup.main()\n";
     python($pyStr);
 }
-installAssetEngine();
+install();
