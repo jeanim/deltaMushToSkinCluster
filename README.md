@@ -3,8 +3,8 @@
 自动将Delta Mush的变形效果转换到SkinCluster上，从而减小场景开销。
 
 ## 联系方式:
-* 作者: [Godfrey Huang](http://www.cgenter.com)
-* 邮箱: <godfreyhuang@cgenter.com>
+* 作者: [Godfrey Huang](https://www.linkedin.com/in/godfreyhuang/)
+* 邮箱: <godfrey.huang@udecg.com>
 
 ## 环境需求: 
 Maya 2014 x64+, Windows, and OS X
