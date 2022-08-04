@@ -1,10 +1,10 @@
 /*
 # Author: Godfrey Huang
-# Email: godfreyhuang@cgenter.com
-# Website: www.cgenter.com
+# Email: godfrey.huang@udecg.com
+# Website: www.udecg.com
 #
 # Created by Godfrey Huang on 2015-11-01.
-# Copyright (c) 2014 CGENTER.COM. All rights reserved.
+# Copyright (c) 2014 UDECG.COM. All rights reserved.
 */
 global proc tempProc ()
 {}
@@ -33,7 +33,7 @@ global proc string tellMeWhere()
 	return	$place;
 }
 
-global proc install()
+global proc installAssetEngine()
 {
     string $scriptsPath = `tellMeWhere`;
     string $pyStr = "import sys\n";
@@ -43,4 +43,4 @@ global proc install()
     $pyStr += "dm2scSetup.main()\n";
     python($pyStr);
 }
-install();
+installAssetEngine();

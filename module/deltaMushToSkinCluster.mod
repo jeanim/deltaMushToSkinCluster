@@ -1,1 +1,0 @@
-+ deltaMushToSkinCluster 1.0 REPLACE_YOUR_PATH/deltamushtoskincluster
